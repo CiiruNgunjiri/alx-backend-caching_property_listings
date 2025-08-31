@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.decorators.cache import cache_page
 from .utils import get_all_properties
+from django.http import JsonResponse
 
 @cache_page(60 * 15)  # Keep view-level cache for 15 minutes to cache full response
 def property_list(request):
