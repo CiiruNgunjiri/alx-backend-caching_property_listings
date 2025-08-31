@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -75,13 +75,13 @@ WSGI_APPLICATION = 'alx_backend_caching_property_listings.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+ 'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'property_db',
-        'USER': 'property_user',
-        'PASSWORD': 'property_password',
-        'HOST': 'postgres',
-        'PORT': '5432',
+        'NAME': os.environ.get('POSTGRES_DB', 'property_db'),
+        'USER': os.environ.get('POSTGRES_USER', 'property_user'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'property_password'),
+        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
+        'PORT': os.environ.get('POSTGRES_PORT', '5432'),
     }
 }
 
